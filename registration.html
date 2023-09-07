@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fitbot Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
 
+        form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form action="payment.html" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="e.g. 2131212121" required>
+
+        <label for="height">Height:</label>
+        <input type="text" id="height" name="height" required>
+
+        <label for="weight">Weight (lbs):</label>
+        <input type="number" id="weight" name="weight" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="goals">Fitness Goals:</label>
+        <textarea id="goals" name="goals" rows="4" required></textarea>
+
+        <label for="environment">Exercise Environment:</label>
+        <select id="environment" name="environment" required>
+            <option value="gym">Gym</option>
+            <option value="home">Home</option>
+            <option value="outdoors">Outdoors</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
