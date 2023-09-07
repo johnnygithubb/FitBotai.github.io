@@ -26,5 +26,35 @@
         buy-button-id="buy_btn_1NnmjvK1PTAqJ9WXuHamNK7o"
         publishable-key="pk_live_51MX4aAK1PTAqJ9WXDXWnzodivP4wCPGtRzqtPvvpDSeVNsUroEfrWmP0GOgBSo5uHzx9TLAnwmj8LiD21cpUk5KI00VA31aNoL">
     </stripe-buy-button>
+
+    <script>
+        // Assuming Stripe provides an event like 'paymentSuccess' 
+        document.addEventListener('paymentSuccess', function() {
+            // Get client data (you'd need to fetch this from wherever it's stored)
+            var clientData = {
+                name: "Client Name", // replace with actual data
+                email: "client@example.com" // replace with actual data
+                // ... any other data ...
+            };
+
+            // Send data to Zapier webhook
+            fetch('https://hooks.zapier.com/hooks/catch/14518624/3rb9v6z/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(clientData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // If webhook was successful, redirect to the thank you page
+                if(data.success) {
+                    window.location.href = 'thankyou.html';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+
+
