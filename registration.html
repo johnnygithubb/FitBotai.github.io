@@ -44,7 +44,7 @@
     </style>
 </head>
 <body>
-    <form action="payment.html" method="post">
+    <form id="registrationForm">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
 
@@ -70,7 +70,18 @@
             <option value="outdoors">Outdoors</option>
         </select>
 
-        <button type="submit">Submit</button>
+        <button type="button" onclick="handleSubmit()">Submit</button>
     </form>
+
+    <script>
+        function handleSubmit() {
+            // Capture form data if needed
+            // var formData = new FormData(document.getElementById('registrationForm'));
+
+            // For now, simply redirect to the payment page
+            window.location.href = 'payment.html';
+        }
+    </script>
 </body>
 </html>
+
