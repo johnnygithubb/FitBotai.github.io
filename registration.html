@@ -75,13 +75,25 @@
 
     <script>
         function handleSubmit() {
-            // Capture form data if needed
-            // var formData = new FormData(document.getElementById('registrationForm'));
+            // Capture form data
+            var formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                height: document.getElementById('height').value,
+                weight: document.getElementById('weight').value,
+                age: document.getElementById('age').value,
+                goals: document.getElementById('goals').value,
+                environment: document.getElementById('environment').value
+            };
 
-            // For now, simply redirect to the payment page
+            // Store data in localStorage
+            localStorage.setItem('formData', JSON.stringify(formData));
+
+            // Redirect to payment page
             window.location.href = 'payment.html';
         }
     </script>
 </body>
 </html>
+
 
