@@ -42,16 +42,13 @@
 
     <script>
         function handlePayment() {
-            // Get stored data from localStorage
-            var formData = JSON.parse(localStorage.getItem('formData'));
-
-            console.log("Sending data:", formData);
-
             // Hardcoded data for testing
             var testData = {
                 testKey: "testValue",
                 anotherKey: "anotherValue"
             };
+
+            console.log("Sending test data:", testData);
 
             // Send hardcoded data to Zapier webhook
             fetch('https://hooks.zapier.com/hooks/catch/14518624/3rb9v6z/', {
@@ -59,12 +56,11 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(testData)  // Swap this with formData once you verify the hardcoded data works
+                body: JSON.stringify(testData)
             })
             .then(response => response.json())
             .then(data => {
                 console.log("Response from webhook:", data);
-                localStorage.removeItem('formData'); // Clear stored data
             });
         }
     </script>
