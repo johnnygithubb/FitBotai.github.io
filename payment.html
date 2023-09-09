@@ -42,27 +42,31 @@
 
     <script>
         function handlePayment() {
-            // Here, you can add any logic to check for payment confirmation.
-            // For the sake of this example, I'm assuming the payment is successful as soon as the button is clicked.
-
             // Get stored data from localStorage
             var formData = JSON.parse(localStorage.getItem('formData'));
 
-            // Send data to Zapier webhook
+            console.log("Sending data:", formData);
+
+            // Hardcoded data for testing
+            var testData = {
+                testKey: "testValue",
+                anotherKey: "anotherValue"
+            };
+
+            // Send hardcoded data to Zapier webhook
             fetch('https://hooks.zapier.com/hooks/catch/14518624/3rb9v6z/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(testData)  // Swap this with formData once you verify the hardcoded data works
             })
             .then(response => response.json())
             .then(data => {
-                // Handle any post-request tasks here
+                console.log("Response from webhook:", data);
                 localStorage.removeItem('formData'); // Clear stored data
             });
         }
     </script>
 </body>
 </html>
-S
