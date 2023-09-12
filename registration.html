@@ -21,10 +21,17 @@
             padding: 10px;
         }
     </style>
+    <script>
+        function redirectToThankYou() {
+            setTimeout(function() {
+                window.location.href = "thankyou.html";
+            }, 2000);  // 2 seconds delay
+        }
+    </script>
 </head>
 <body>
     <h2>Complete Your Registration</h2>
-    <form action="https://hooks.zapier.com/hooks/catch/14518624/3rb9v6z/" method="post">
+    <form action="https://hooks.zapier.com/hooks/catch/14518624/3rb9v6z/" method="post" onsubmit="redirectToThankYou()">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
         
@@ -50,4 +57,5 @@
     </form>
 </body>
 </html>
+
 
