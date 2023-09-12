@@ -2,98 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fitbot Registration</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-
-        form {
-            max-width: 500px;
-            margin: auto;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input, textarea, select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <title>Registration</title>
 </head>
 <body>
-    <form id="registrationForm">
+    <h1>Complete Your Registration</h1>
+    <p>Fill out the form below to receive your personalized workout plan.</p>
+    
+<form action="https://hooks.zapier.com/hooks/catch/14518624/3rb9v6z/" method="post">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
+        
+        <label for="height">Height (in cm):</label>
+        <input type="number" id="height" name="height" required>
 
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="e.g. 2131212121" required>
-
-        <label for="height">Height:</label>
-        <input type="text" id="height" name="height" required>
-
-        <label for="weight">Weight (lbs):</label>
+        <label for="weight">Weight (in kg):</label>
         <input type="number" id="weight" name="weight" required>
 
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" required>
 
-        <label for="goals">Fitness Goals:</label>
-        <textarea id="goals" name="goals" rows="4" required></textarea>
+        <label for="goal">Fitness Goal:</label>
+        <input type="text" id="goal" name="goal" required>
 
-        <label for="environment">Exercise Environment:</label>
-        <select id="environment" name="environment" required>
-            <option value="gym">Gym</option>
-            <option value="home">Home</option>
-            <option value="outdoors">Outdoors</option>
-        </select>
+        <label for="environment">Exercise Environment (e.g. Gym, Home):</label>
+        <input type="text" id="environment" name="environment" required>
 
-        <button type="button" onclick="handleSubmit()">Submit</button>
+        <label for="phone">Phone Number (format: 2435657651):</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+        <input type="submit" value="Complete Registration">
     </form>
-
-    <script>
-        function handleSubmit() {
-            // Capture form data
-            var formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                height: document.getElementById('height').value,
-                weight: document.getElementById('weight').value,
-                age: document.getElementById('age').value,
-                goals: document.getElementById('goals').value,
-                environment: document.getElementById('environment').value
-            };
-
-            // Store data in localStorage
-            localStorage.setItem('formData', JSON.stringify(formData));
-
-            // Redirect to payment page
-            window.location.href = 'payment.html';
-        }
-    </script>
-</body>
 </html>
-
 
