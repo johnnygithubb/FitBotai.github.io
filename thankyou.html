@@ -5,6 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You - fitbot</title>
+    <script>
+        window.onload = function() {
+            // Retrieve form data from localStorage
+            var formData = JSON.parse(localStorage.getItem('formData'));
+
+            if (!formData) {
+                console.error("No registration data found in local storage.");
+                return;
+            }
+
+            console.log("Sending registration data:", formData);
+
+            // Use XMLHttpRequest to send data to Zapier webhook
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://hooks.zapier.com/hooks/catch/14518624/3rh076e/', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    console.log("Response from webhook:", xhr.responseText);
+                }
+            };
+            xhr.send(JSON.stringify(formData));
+        }
+    </script>
 </head>
 <body>
     <h2>Thank you for your purchase!</h2>
