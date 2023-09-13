@@ -1,43 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Other head elements ... -->
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap" rel="stylesheet"> <!-- Load League Spartan font -->
     <style>
         body {
             text-align: center;
+            font-family: 'League Spartan', sans-serif; /* Set League Spartan as the font */
         }
+
         form {
             max-width: 500px;
             margin: 0 auto;
         }
-        label, input {
+
+        label,
+        input,
+        select {
             width: 100%;
             margin-bottom: 10px;
             padding: 10px;
         }
     </style>
     <script>
-        function redirectToThankYou() {
-            setTimeout(function() {
-                window.location.href = "thankyou.html";
-            }, 2000);  // 2 seconds delay
+        function submitFormAndRedirect(event) {
+            // Prevent the form from submitting the traditional way
+            event.preventDefault();
+
+            // Create a form data object
+            var formData = new FormData(document.querySelector('form'));
+
+            // Post the form data using fetch
+            fetch("https://hooks.zapier.com/hooks/catch/14518624/3rb9v6z/", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to thankyou.html after a successful submission
+                    setTimeout(function() {
+                        window.location.href = "thankyou.html";
+                    }, 2000);  // 2 seconds delay
+                } else {
+                    alert("Form submission failed. Please try again.");
+                }
+            })
+            .catch(error => {
+                alert("An error occurred. Please try again.");
+            });
         }
     </script>
 </head>
+
 <body>
     <h2>Complete Your Registration</h2>
-    <form action="https://hooks.zapier.com/hooks/catch/14518624/3rb9v6z/" method="post" onsubmit="redirectToThankYou()">
+    <form onsubmit="submitFormAndRedirect(event)">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
-        
-        <label for="height">Height (in inches):</label>
-        <input type="number" id="height" name="height" required>
+
+        <label for="heightFeet">Height:</label>
+        <input type="number" id="heightFeet" name="heightFeet" placeholder="Feet" required style="width:48%; display:inline-block;">
+        <input type="number" id="heightInches" name="heightInches" placeholder="Inches" required style="width:48%; display:inline-block;">
 
         <label for="weight">Weight (in pounds):</label>
         <input type="number" id="weight" name="weight" required>
 
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="none">None</option>
+        </select>
 
         <label for="goals">Fitness Goals:</label>
         <input type="text" id="goals" name="goals" required>
@@ -51,4 +88,5 @@
         <input type="submit" value="Complete Registration">
     </form>
 </body>
+
 </html>
