@@ -22,11 +22,6 @@
             margin-bottom: 10px;
             padding: 10px;
         }
-
-        .inline-input {
-            width: 48%;
-            display: inline-block;
-        }
     </style>
     <script>
         function submitFormAndRedirect(event) {
@@ -64,9 +59,8 @@
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
 
-        <label>Height:</label>
-        <input type="number" id="heightFeet" name="heightFeet" placeholder="Feet" required class="inline-input">
-        <input type="number" id="heightInches" name="heightInches" placeholder="Inches" required class="inline-input">
+        <label for="height">Height (e.g. 6'2"):</label>
+        <input type="text" id="height" name="height" pattern="\d+'\d{1,2}\"" required placeholder="5'7\"">
 
         <label for="weight">Weight (in pounds):</label>
         <input type="number" id="weight" name="weight" required>
