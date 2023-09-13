@@ -25,20 +25,11 @@
             margin: 0 auto 20px;
         }
 
-        a {
-            display: inline-block;
-            padding: 15px 30px;
-            background-color: #4CAF50;  /* a shade of green */
-            color: #fff;
+        a#termsLink {
+            font-weight: bold;
+            background-color: #FFFF99; /* Yellow highlight */
+            padding: 0 5px;
             text-decoration: none;
-            border-radius: 50px;  /* more rounded corners */
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);  /* subtle shadow */
-            transition: background-color 0.2s, transform 0.5s;
-        }
-
-        a:hover {
-            background-color: #45a049;  /* a darker shade of green */
-            transform: scale(1.1);
         }
 
         #termsContainer {
@@ -64,7 +55,7 @@
     
     <div id="termsContainer">
         <input type="checkbox" id="termsCheckbox">
-        <label for="termsCheckbox">I agree to the <a href="terms_and_conditions.html" target="_blank">Terms and Conditions</a></label>
+        <label for="termsCheckbox">I agree to the <a href="terms_and_conditions.html" target="_blank" id="termsLink">Terms and Conditions</a></label>
     </div>
 
     <script>
@@ -83,3 +74,4 @@
     </script>
 </body>
 </html>
+
