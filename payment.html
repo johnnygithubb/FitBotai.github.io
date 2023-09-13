@@ -6,53 +6,17 @@
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600&display=swap" rel="stylesheet"> 
     <title>FitbotAi Payment</title>
     <style>
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        /* ... [previous styles] ... */
+
+        #termsContainer {
+            margin-top: 20px;
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        #getPlanBtn {
+            pointer-events: none;
+            opacity: 0.6;
         }
 
-        body {
-            font-family: 'League Spartan', sans-serif;
-            padding: 20px;
-            text-align: center;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 2s ease;
-            background-color: #f5f5f5;
-        }
-
-        ul {
-            text-align: left;
-            max-width: 500px;
-            margin: 0 auto 20px;
-        }
-
-        a {
-            display: inline-block;
-            padding: 15px 30px;
-            background-color: #4CAF50;  /* a shade of green */
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;  /* more rounded corners */
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);  /* subtle shadow */
-            transition: background-color 0.2s, transform 0.5s;
-            animation: pulse 1.5s infinite;
-        }
-
-        a:hover {
-            background-color: #45a049;  /* a darker shade of green */
-            transform: scale(1.1);
-        }
     </style>
 </head>
 <body>
@@ -63,6 +27,26 @@
       <li>Kickstart your fitness journey now and see <strong>noticeable improvements</strong> in your health and physique.</li>
     </ul>
     
-    <a href="https://buy.stripe.com/7sIeVz5Y28NAdNK9AR">Get Your Plan</a>
+    <a href="https://buy.stripe.com/7sIeVz5Y28NAdNK9AR" id="getPlanBtn">Get Your Plan</a>
+    
+    <div id="termsContainer">
+        <input type="checkbox" id="termsCheckbox">
+        <label for="termsCheckbox">I agree to the <a href="terms_and_conditions.html" target="_blank">Terms and Conditions</a></label>
+    </div>
+
+    <script>
+        const termsCheckbox = document.getElementById('termsCheckbox');
+        const getPlanBtn = document.getElementById('getPlanBtn');
+
+        termsCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                getPlanBtn.style.pointerEvents = 'all';
+                getPlanBtn.style.opacity = 1;
+            } else {
+                getPlanBtn.style.pointerEvents = 'none';
+                getPlanBtn.style.opacity = 0.6;
+            }
+        });
+    </script>
 </body>
 </html>
