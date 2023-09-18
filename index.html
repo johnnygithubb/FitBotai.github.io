@@ -23,8 +23,6 @@
             text-align: center;
             margin: 0;
             height: 100vh;
-            background-color: black; /* set background to black */
-            color: #E6B800; /* matte yellow color */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -32,15 +30,20 @@
             animation: fadeIn 2s ease;
         }
 
-        strong {
-            color: green; /* green for highlights */
+        h1 {
+            font-size: 2.5em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
         }
 
         a {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #E6B800; /* matte yellow for button background */
-            color: black; /* black text for button */
+            background-color: green;
+            color: white;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.2s, transform 0.5s;
@@ -48,18 +51,13 @@
         }
 
         a:hover {
-            background-color: darkgreen; /* darkgreen for button hover */
+            background-color: darkgreen;
             transform: scale(1.1);
-        }
-
-        img.logo {
-            width: 200px;
-            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <img src="FitBot.BrandKit.png" alt="FitBot Logo" class="logo"> <!-- Logo displayed at the top -->
+    <h1><strong>FITBOT AI</strong></h1>
     <h2>Fitness Programs Using Generative AI</h2>
     <p>🚀 Harness the unparalleled power of <strong>AI</strong> with FitbotAi!</p>
     <p>No more navigating through cumbersome apps or sifting through generic workout plans. 🌐🤖</p>
