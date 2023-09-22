@@ -13,6 +13,10 @@
         form {
             max-width: 500px;
             margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
         label,
@@ -21,6 +25,14 @@
             width: 100%;
             margin-bottom: 10px;
             padding: 10px;
+            border-radius: 20px; /* Rounded corners */
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
         }
     </style>
     <script>
@@ -49,6 +61,14 @@
             .catch(error => {
                 alert("An error occurred. Please try again.");
             });
+        }
+
+        // Function to automatically add +1 to phone input
+        function formatPhoneNumber(input) {
+            var value = input.value;
+            if (value.length === 0) {
+                input.value = '+1';
+            }
         }
     </script>
 </head>
@@ -81,11 +101,18 @@
         <label for="environment">Exercise Environment (e.g. Gym, Home):</label>
         <input type="text" id="environment" name="environment" required>
 
-        <label for="phone">Phone Number (format: +13614628271):</label>
-        <input type="tel" id="phone" name="phone" pattern="\+\d{11,15}" required>
+        <label for="phone">Phone Number (no dashes or spaces):</label>
+        <input type="tel" id="phone" name="phone" pattern="\+\d{11,15}" required placeholder="No dashes or spaces" onfocus="formatPhoneNumber(this)">
 
         <input type="submit" value="Complete Registration">
     </form>
+    <script>
+        // Automatically add +1 to phone input on page load
+        window.onload = function() {
+            var phoneInput = document.getElementById('phone');
+            phoneInput.value = '+1';
+        };
+    </script>
 </body>
 
 </html>
