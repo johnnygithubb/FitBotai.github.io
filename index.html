@@ -1,76 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... (other meta tags) ... -->
-    <title>AI Fitness Startup</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r122/three.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600&display=swap" rel="stylesheet"> 
+    <title>Welcome to FitbotAi</title>
     <style>
-        /* ... (previous styles) ... */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
 
         body {
-            /* Gradient background for a more vibrant look */
-            background: linear-gradient(to right, #000, #333);
+            font-family: 'League Spartan', sans-serif;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 2s ease;
+        }
+
+        h1 {
+            font-size: 2.5em;
         }
 
         h2 {
-            font-size: 2em;
-            text-shadow: 2px 2px 4px #000;
+            font-size: 1.5em;
+            margin-bottom: 20px;
         }
 
-        .section-content {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            text-decoration: none;
             border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.05);
+            transition: background-color 0.2s, transform 0.5s;
+            animation: pulse 1.5s infinite;
         }
 
-        /* Hide the simplistic mobile phone design from before */
-        .mobile-phone {
-            display: none;
+        a:hover {
+            background-color: darkgreen;
+            transform: scale(1.1);
         }
-
     </style>
 </head>
 <body>
-<!-- ... (rest of your HTML) ... -->
-
-<!-- 3D Mobile Phone Section -->
-<div class="section" id="3d-mobile-section">
-    <div class="section-content">
-        <h2 class="accent">Experience Our Mobile App!</h2>
-        
-        <!-- Placeholder for the Three.js 3D phone -->
-        <div id="threejs-container" style="width: 200px; height: 400px; margin: 50px auto;"></div>
-    </div>
-</div>
-
-<!-- ... (rest of your code) ... -->
-
-<script>
-    // ... (previous scripts) ...
-
-    // Initialize the Three.js scene for the 3D phone
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 200 / 400, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(200, 400);
-    document.getElementById('threejs-container').appendChild(renderer.domElement);
-
-    // Create the 3D phone model (simplified cube representation for this demo)
-    const geometry = new THREE.BoxGeometry(1, 2, 0.1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
-    const phone = new THREE.Mesh(geometry, material);
-    scene.add(phone);
-
-    camera.position.z = 5;
-
-    function animate() {
-        requestAnimationFrame(animate);
-        renderer.render(scene, camera);
-    }
-    animate();
-
-</script>
+    <h1><strong>FITBOT AI</strong></h1>
+    <h2>Fitness Programs Using Generative AI</h2>
+    <p>🚀 Harness the unparalleled power of <strong>AI</strong> with FitbotAi!</p>
+    <p>No more navigating through cumbersome apps or sifting through generic workout plans. 🌐🤖</p>
+    <p>With our state-of-the-art <strong>LLms+</strong> algorithm, FitbotAi crafts <strong>unique workouts just for you</strong>. And guess what? <strong>No more downloading apps</strong>. Our <strong>AI</strong> communicates directly with you, texting your next fitness challenge straight to your device. 📲💡</p>
+    <p>Step into the future where cutting-edge <strong>AI technology</strong> reshapes your fitness experience. Transform, evolve, and achieve with FitbotAi. 🌌🔍</p>
+    <a href="registration.html">Proceed</a>
 </body>
 </html>
