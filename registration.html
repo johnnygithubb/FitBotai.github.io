@@ -1,118 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <!-- Other head elements ... -->
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap" rel="stylesheet"> <!-- Load League Spartan font -->
-    <style>
-        body {
-            text-align: center;
-            font-family: 'League Spartan', sans-serif; /* Set League Spartan as the font */
-        }
+    <title>User Profile Form</title>
 
-        form {
-            max-width: 500px;
-            margin: 0 auto;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
 
-        label,
-        input,
-        select {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 20px; /* Rounded corners */
-            border: 1px solid #ccc;
-        }
-
-        input[type="submit"] {
-            background-color: #008CBA;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+    <!-- Initialize Firebase -->
     <script>
-        function submitFormAndRedirect(event) {
-            // Prevent the form from submitting the traditional way
-            event.preventDefault();
-
-            // Create a form data object
-            var formData = new FormData(document.querySelector('form'));
-
-            // Post the form data using fetch
-            fetch("https://hooks.zapier.com/hooks/catch/14518624/3rb9v6z/", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Redirect to thankyou.html after a successful submission
-                    setTimeout(function() {
-                        window.location.href = "thankyou.html";
-                    }, 2000);  // 2 seconds delay
-                } else {
-                    alert("Form submission failed. Please try again.");
-                }
-            })
-            .catch(error => {
-                alert("An error occurred. Please try again.");
-            });
-        }
-
-        // Function to automatically add +1 to phone input
-        function formatPhoneNumber(input) {
-            var value = input.value;
-            if (value.length === 0) {
-                input.value = '+1';
-            }
-        }
-    </script>
-</head>
-
-<body>
-    <h2>Complete Your Registration</h2>
-    <form onsubmit="submitFormAndRedirect(event)">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="height">Height (e.g. 6'2"):</label>
-        <input type="text" id="height" name="height" pattern="\d+'\d{1,2}\"" required placeholder="5'7\"">
-
-        <label for="weight">Weight (in pounds):</label>
-        <input type="number" id="weight" name="weight" required>
-
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required>
-
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="none">None</option>
-        </select>
-
-        <label for="goals">Fitness Goals:</label>
-        <input type="text" id="goals" name="goals" required>
-
-        <label for="environment">Exercise Environment (e.g. Gym, Home):</label>
-        <input type="text" id="environment" name="environment" required>
-
-        <label for="phone">Phone Number (no dashes or spaces):</label>
-        <input type="tel" id="phone" name="phone" pattern="\+\d{11,15}" required placeholder="No dashes or spaces" onfocus="formatPhoneNumber(this)">
-
-        <input type="submit" value="Complete Registration">
-    </form>
-    <script>
-        // Automatically add +1 to phone input on page load
-        window.onload = function() {
-            var phoneInput = document.getElementById('phone');
-            phoneInput.value = '+1';
+        const firebaseConfig = {
+            apiKey: "AIzaSyDNqh_jzkYXjggnbq2DV20IVdzjp9_VfNk",
+            authDomain: "fitbotapp-849c2.firebaseapp.com",
+            projectId: "fitbotapp-849c2",
+            storageBucket: "fitbotapp-849c2.appspot.com",
+            messagingSenderId: "533575233376",
+            appId: "1:533575233376:web:d536e4ef45204c7df93805",
+            measurementId: "G-762CHG1X7T"
         };
+        firebase.initializeApp(firebaseConfig);
     </script>
-</body>
 
-</html>
+    <!-- Add any additional head elements here -->
+</head>
+<body>
+    <h1>User Profile</h1>
+
+    <form id="userProfileForm">
+        <fieldset>
+            <legend>Personal Details</legend>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br>
+
+            <label for="dob">Date of Birth:</label><br>
+            <input type="date" id="dob" name="dob"><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Fitness Goals</legend>
+            <label><input type="checkbox" name="fitnessGoals" value="Weight Loss"> Weight Loss</label><br>
+            <label><input type="checkbox" name="fitnessGoals" value="Muscle Gain"> Muscle Gain</label><br>
+            <label><input type="checkbox" name="fitnessGoals" value="Improved Stamina"> Improved Stamina</label><br>
+            <!-- Add more goals as needed -->
+        </fieldset>
+
+        <fieldset>
+            <legend>Workout Preferences</legend>
+            <label for="workoutType">Workout Type:</label><br>
+            <select id="workoutType" name="workoutType">
+                <option value="Cardio">Cardio</option>
+                <option value="Strength Training">Strength Training</option>
+                <option value="Yoga">Yoga</option>
+                <!-- Add more types as needed -->
+            </select><br>
+
+            <label for="preferredTime">Preferred Time of Day:</label><br>
+            <input type="time" id="preferredTime" name="preferredTime"><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Nutritional Preferences</legend>
+            <label for="dietaryRestrictions">Dietary Restrictions:</label><br>
+            <input type="text" id="dietaryRestrictions" name="dietaryRestrictions"><br>
+
+            <label for="favoriteFoods">Favorite Foods:</label><br>
+            <input type="text" id="favoriteFoods" name="favoriteFoods"><br>
+        </fieldset>
+
+        <input type="submit" value="Submit">
+    </form>
+
+   <script>
+    // Check for authentication state
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log("User is signed in.");
+        } else {
+            console.log("No user is signed in.");
+            alert("You must be logged in to update your profile.");
+            // Optionally redirect to login page
+            // window.location.href = "login.html";
+        }
+    });
+
+    document.getElementById('userProfileForm').addEventListener('submit', function(event){
+        event.preventDefault();
+
+        // Capture form data
+        var formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            dob: document.getElementById('dob').value,
+            fitnessGoals: Array.from(document.querySelectorAll('input[name="fitnessGoals"]:checked')).map(el => el.value),
+            workoutType: document.getElementById('workoutType').value,
+            preferredTime: document.getElementById('preferredTime').value,
+            dietaryRestrictions: document.getElementById('dietaryRestrictions').value,
+            favoriteFoods: document.getElementById('favoriteFoods').value
+        };
+
+        // Basic form validation
+        if (!formData.name || !formData.email) {
+            alert("Name and email are required.");
+            return;
+        }
+
+        // Ensure user is logged in before submitting form data
+        var user = firebase.auth().currentUser;
+        if(user) {
+            firebase.firestore().collection('users').doc(user.uid).set(formData)
+                .then(() => {
+                    alert("Profile information saved successfully!");
+                    console.log("Profile information saved");
+                    // Additional logic after successful save, like redirecting to another page
+                    // window.location.href = "success-page.html";
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                    alert("An error occurred while saving your data.");
+                });
+        } else {
+            alert("User not logged in. Please log in to update your profile.");
+            // Optionally redirect to login page
+            // window.location.href = "login.html";
+        }
+    });
+</script>
